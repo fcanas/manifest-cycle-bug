@@ -8,6 +8,14 @@ detection.
 A fork of SPM adding memoization to [`findCycle`](https://github.com/fcanas/swift-package-manager/blob/baae4bb996ab810012f21107f0025aa073cbc4b1/Sources/PackageGraph/PackageGraph%2BLoading.swift#L866) 
 can be swapped in this repository's `Package.swift` to show the impact.
 
+| Number of packages | apple/spm | memoized |
+|--------------------|-----------|----------|
+| 22                 | 17.9s     | 0.2s     |
+| 23                 | 35.8s     | 0.2s     |
+| 24                 | 88.1s     | 0.2s     |
+| 25                 | 160.5s    | 0.2s     |
+| 26                 | 323.4s    | 0.2s     |
+
 Edit `Package.swift` to switch SPM implementations.
 
 ```
@@ -22,7 +30,6 @@ Edit `Package.swift` to switch SPM implementations.
 `.package(url: "https://github.com/apple/swift-package-manager", branch: "main")` will exhibit quadratic time loading manifests.
 
 `.package(url: "https://github.com/fcanas/swift-package-manager", branch: "canon")` will be linear, and noticably faster with large package graphs.
-
 
 ## Running the tool
 
@@ -58,17 +65,3 @@ swift run manifest-cycle-bug profile 22
 
 The tool also allows introducing cycles to help show things still work with
 memoization.
-
-## memoized spm
-
-```
-Loaded package graph in 17.8s seconds.
-```
-
-| Number of packages | apple/spm | memoized |
-|--------------------|-----------|----------|
-| 22                 | 17.9s     | 0.2s     |
-| 23                 | 35.8s     | 0.2s     |
-| 24                 | 88.1s     | 0.2s     |
-| 25                 | 160.5s    | 0.2s     |
-| 26                 | 323.4s    | 0.2s     |
