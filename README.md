@@ -2,7 +2,7 @@
 
 This tool generates a tree of SPM dependencies, and profiles loading them with
 `Workspace.loadPackageGraph(rootPath:...)`, which Xcode uses. This eventually
-calls into [`findCycle()`](https://github.com/apple/swift-package-manager/blob/25c671ef3ef2bd7a245403f9848cb3be3321c790/Sources/PackageGraph/PackageGraph%2BLoading.swift#L866), which has a bug leading to quadratic-time cycle
+calls into [`findCycle()`](https://github.com/apple/swift-package-manager/blob/25c671ef3ef2bd7a245403f9848cb3be3321c790/Sources/PackageGraph/PackageGraph%2BLoading.swift#L866), which has a bug leading to slower than linear cycle
 detection.
 
 A fork of SPM adding memoization to [`findCycle`](https://github.com/fcanas/swift-package-manager/blob/baae4bb996ab810012f21107f0025aa073cbc4b1/Sources/PackageGraph/PackageGraph%2BLoading.swift#L866) 
