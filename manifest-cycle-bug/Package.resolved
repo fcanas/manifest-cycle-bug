@@ -46,6 +46,15 @@
       }
     },
     {
+      "identity" : "swift-package-manager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-package-manager",
+      "state" : {
+        "branch" : "main",
+        "revision" : "25c671ef3ef2bd7a245403f9848cb3be3321c790"
+      }
+    },
+    {
       "identity" : "swift-system",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-system.git",
